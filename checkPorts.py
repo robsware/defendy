@@ -33,15 +33,13 @@ for ip in ipList:
 
 print ("done")
 
-#data = [json.loads(line) for line in open('eve.json', 'r')]
-#print (data[120]['src_port'])
-#"src_ip":"10.10.0.100","src_port":41798,"dest_ip":"68.232.34.217","dest_port":443
 
+#Data cleanup
 
 outboundList = [i for i in deviceActivity if i[0].startswith('10.10')]
 inboundList = [i for i in deviceActivity if not i[0].startswith('10.10')]
+inboundList = [ i for i in inboundList if "0.0.0.0" not in i ]
 
-#TODO: remove 0.0.0.0 and 255.255.255.255 from inbound list
 
 j = 0
 for element in deviceActivity:
