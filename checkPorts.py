@@ -8,9 +8,6 @@ with open('namedDevices.txt') as f:
 		ipList.append(line.split("\t")[0])
 	print (ipList)
 
-#JSON
-data = [json.loads(line) for line in open('eve.json', 'r')]
-print (data[120]['src_port'])
 
 ipPattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
 deviceActivity = []
@@ -33,23 +30,18 @@ for ip in ipList:
 			pass
 
 		i += 1
-'''
-for ip in ipList:
-	with open ('eve.json') as f:
-		for line in f.readlines():
-			if ip in line:
-				#print (line.split(ip)[1][2:53])
-				deviceActivity.append(line.split(ip)[1][2:60])
 
-ipSourceList = [i for i in deviceActivity if i.startswith('"src_port"')]
-ipDestinationList = [i for i in deviceActivity if i.startswith('"dest_port"')]
-'''
 print ("done")
 
 #data = [json.loads(line) for line in open('eve.json', 'r')]
 #print (data[120]['src_port'])
 #"src_ip":"10.10.0.100","src_port":41798,"dest_ip":"68.232.34.217","dest_port":443
 
+
+outboundList = [i for i in deviceActivity if i[0].startswith('10.10')]
+inboundList = [i for i in deviceActivity if not i[0].startswith('10.10')]
+
+#TODO: remove 0.0.0.0 and 255.255.255.255 from inbound list
 
 j = 0
 for element in deviceActivity:
