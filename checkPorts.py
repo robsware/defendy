@@ -42,35 +42,31 @@ outboundList = [i for i in deviceActivity if i[0].startswith('10.10')]
 inboundList = [i for i in deviceActivity if not i[0].startswith('10.10')]
 inboundList = [ i for i in inboundList if "0.0.0.0" not in i ]
 
-#TODO: rename to outboundList after testing
-cleanOutboundList = [i for i in outboundList if i[0] != '10.10.0.1']
-cleanInboundList = [i for i in inboundList if i[2] != '10.10.0.1']
+outboundList = [i for i in outboundList if i[0] != '10.10.0.1']
+inboundList = [i for i in inboundList if i[2] != '10.10.0.1']
 
 #separate by IP
+deviceConnections = []
 for ip in ipList:
-	for i in cleanOutboundList:
+	for i in outboundList:
 		if i[0] == ip:
-			deviceOutboundConnections.append(i)
-	print (deviceOutboundConnections)
+			deviceConnections.append(i)
+	print (deviceConnections)
 	with open('outbound_' + ip +'.csv', 'w', newline='') as f:
 		writer = csv.writer(f)
-		writer.writerows(deviceOutboundConnections)
-	deviceOutboundConnections = []
+		writer.writerows(deviceConnections)
+	deviceConnections = []
 
-#TODO: create a function that generates a file with all the traffic of a device. Also write inbound and outbound traffic to a file
-
-
-
-testip = '10.10.0.100'
-device1list = [i for i in cleanOutboundList if i[0] == testip]
-deviceoutlist = [i for i in outboundList if i[2] == testip]
-
-j = 0
-for element in deviceActivity:
-	print (deviceActivity[j][0])
-	j += 1
+for ip in ipList:
+	for i in inboundList:
+		if i[2] == ip:
+			deviceConnections.append(i)
+	print (deviceConnections)
+	with open('inbound_' + ip +'.csv', 'w', newline='') as f:
+		writer = csv.writer(f)
+		writer.writerows(deviceConnections)
+	deviceConnections = []
 
 
-first_tuple_list = [tuple(lst) for lst in outboundList]
-secnd_tuple_list = [tuple(lst) for lst in device1list]
-temp3 = set(first_tuple_list) - set(secnd_tuple_list)
+
+
