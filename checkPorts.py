@@ -47,21 +47,16 @@ cleanOutboundList = [i for i in outboundList if i[0] != '10.10.0.1']
 cleanInboundList = [i for i in inboundList if i[2] != '10.10.0.1']
 
 #separate by IP
-deviceConnections = []
 for ip in ipList:
-	deviceConnections = [i for i in cleanOutboundList if i[0] == ip]
-	print (type(ip))
-	print (ip)
-	print (deviceConnections)
-	print ("BREAK")
-	deviceConnections = []
+	for i in cleanOutboundList:
+		if i[0] == ip:
+			deviceOutboundConnections.append(i)
+	print (deviceOutboundConnections)
 	with open('outbound_' + ip +'.csv', 'w', newline='') as f:
 		writer = csv.writer(f)
-		writer.writerows(deviceConnections)
+		writer.writerows(deviceOutboundConnections)
+	deviceOutboundConnections = []
 
-with open('outbound_' + ip +'.csv', "wb") as f:
-	writer = csv.writer(f)
-	writer.writerows(deviceConnections)
 #TODO: create a function that generates a file with all the traffic of a device. Also write inbound and outbound traffic to a file
 
 
