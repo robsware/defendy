@@ -4,6 +4,7 @@ import csv
 import matplotlib.pyplot as pp
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+import pickle
 
 
 trafficData = pd.read_csv('outbound_10.10.0.100.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
@@ -37,6 +38,9 @@ relevantCols = trafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP",
 iForest.fit(relevantCols)
 
 
+
+y_pred_train = iForest.predict(relevantCols)
+
 portData.remove('10.10.0.100')
 
 
@@ -56,9 +60,26 @@ values = np.array(data)
 integer_encoded = label_encoder.fit_transform(values)
 newTrafficData['intEncodedDestIP'] = integer_encoded
 
+newCols = newTrafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
+
+y_pred_test = iForest.predict(newCols)
+
+
+#saving the model
+filename = 'finalized_model.sav'
+pickle.dump(iForest, open(filename, 'wb'))
+
+
+
+loaded_model = pickle.load(open(filename, 'rb'))
+result = loaded_model.predict(newCols)
+print(result)
+
+
+
+
 
 newiForest = IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0.1, max_features=1.0, max_samples='auto', n_estimators=100, n_jobs=None, random_state=None, verbose=0, warm_start=False)
-newCols = newTrafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
 newTrafficData['anomaly'] = ""
 pred = newiForest.predict(newCols)
 newTrafficData['anomaly']=pred
