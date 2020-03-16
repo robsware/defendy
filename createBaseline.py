@@ -18,9 +18,9 @@ def createBaseline(ip):
 
 	#data for ML
 	#check if there is data
-	if os.stat('inbound_' + ip + '.csv').st_size == 0:
+	if os.stat('outbound_' + ip + '.csv').st_size == 0:
 		return()
-	trafficData = pd.read_csv('inbound_' + ip + '.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
+	trafficData = pd.read_csv('outbound_' + ip + '.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
 	#encode source IP
 	values = np.array(trafficData['srcIP'])
 	integer_encoded = LabelEncoder().fit_transform(values)
