@@ -6,84 +6,47 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle
 
+#TODO: add a check so that it doesn't create a new baseline for devices that already have one
+#TODO: add a check against empty files
 
-trafficData = pd.read_csv('outbound_10.10.0.100.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
+def createBaseline(ip):
+	#data for ML
+	trafficData = pd.read_csv('inbound_' + ip + '.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
+	print (trafficData)
+	#encode source IP
+	values = np.array(trafficData['srcIP'])
+	integer_encoded = LabelEncoder().fit_transform(values)
+	trafficData['intEncodedSourceIP'] = integer_encoded
+	#encode destination IP
+	values = np.array(trafficData['dstIP'])
+	integer_encoded = LabelEncoder().fit_transform(values)
+	trafficData['intEncodedDestIP'] = integer_encoded
 
+	#training
+	isolationForest = IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0, max_features=1.0, max_samples='auto', n_estimators=100, n_jobs=None, random_state=None, verbose=0, warm_start=False)
+	relevantCols = trafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
+	isolationForest.fit(relevantCols)
+	pickle.dump(isolationForest, open("trained_" + ip + '.sav', 'wb'))
 
+	return()
 
-print ("stop")
-
-#encoding source IP
-data = trafficData['srcIP']
-values = np.array(data)
-
-label_encoder = LabelEncoder()
-integer_encoded = label_encoder.fit_transform(values)
-trafficData['intEncodedSourceIP'] = integer_encoded
-
-#encoding destination IP
-data = trafficData['dstIP']
-values = np.array(data)
-
-integer_encoded = label_encoder.fit_transform(values)
-trafficData['intEncodedDestIP'] = integer_encoded
 
 #relevantCols = relevantCols.astype(int)
 #testdf = relevantCols[~relevantCols.applymap(np.isreal).all(1)]
 
 
-#training
-iForest = IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0, max_features=1.0, max_samples='auto', n_estimators=100, n_jobs=None, random_state=None, verbose=0, warm_start=False)
-relevantCols = trafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
-iForest.fit(relevantCols)
+#list of IPs
+with open('namedDevices.txt') as f:
+	for line in f.readlines():
+		ip = line.split("\t")[0]
+		print (ip)
+		createBaseline(ip)
 
 
 
-y_pred_train = iForest.predict(relevantCols)
-
-#portData.remove('10.10.0.100')
-
-#load most recent data
-newTrafficData = pd.read_csv('contaminated_10.10.0.100.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
-
-data = newTrafficData['srcIP']
-values = np.array(data)
-
-label_encoder = LabelEncoder()
-integer_encoded = label_encoder.fit_transform(values)
-newTrafficData['intEncodedSourceIP'] = integer_encoded
-
-#encoding destination IP
-data = newTrafficData['dstIP']
-values = np.array(data)
-
-integer_encoded = label_encoder.fit_transform(values)
-newTrafficData['intEncodedDestIP'] = integer_encoded
-
-newCols = newTrafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
-
-y_pred_test = iForest.predict(newCols)
-
-
-#saving the model
-filename = 'finalized_model.sav'
-pickle.dump(iForest, open(filename, 'wb'))
-
-
-#loading the model
-loaded_model = pickle.load(open(filename, 'rb'))
-result = loaded_model.predict(newCols)
-print(result)
+########################################################
+#y_pred_train = isolationForest.predict(relevantCols)
 
 
 
 
-#to be cleaned up
-'''
-pred = newiForest.predict(newCols)
-newTrafficData['anomaly']=pred
-outliers=newTrafficData.loc[newTrafficData['anomaly']==-1]
-'''
-#convert to int
-#portData = list(map(int, portData))
-#result = [i for i in portData if i.startswith('10.10')]
