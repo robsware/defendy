@@ -20,7 +20,7 @@ with open('namedDevices.txt') as f:
 	deviceToRename = namedDevices[deviceNumber]
 	deviceName = deviceToRename.split("\t")[2]
 	deviceToRename = deviceToRename.replace(deviceName, newDeviceName)
-	namedDevices[deviceNumber] = deviceToRename + '\n'
+	namedDevices[deviceNumber] = deviceToRename
 
 with open('namedDevices.txt', 'w') as f:
 	f.writelines(namedDevices)

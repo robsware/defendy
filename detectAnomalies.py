@@ -25,7 +25,10 @@ def loadModel(ip):
 	newTrafficData['intEncodedDestIP'] = integer_encoded
 	newCols = newTrafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
 	pred = loaded_model.predict(newCols)
+	newTrafficData['anomaly']=pred
 	print (pred)
+	outliers=newTrafficData.loc[newTrafficData['anomaly']==-1]
+	outliers[["srcIP", "srcPort", "dstIP", "dstPort"]].to_csv("outliers_" + ip + ".csv", index=None)
 	return ()
 
 
@@ -34,16 +37,3 @@ with open('namedDevices.txt') as f:
 		ip = line.split("\t")[0]
 		loadModel(ip)
 
-
-
-#portData.remove('10.10.0.100')
-
-#to be cleaned up
-'''
-pred = newiForest.predict(newCols)
-newTrafficData['anomaly']=pred
-outliers=newTrafficData.loc[newTrafficData['anomaly']==-1]
-'''
-#convert to int
-#portData = list(map(int, portData))
-#result = [i for i in portData if i.startswith('10.10')]

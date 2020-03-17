@@ -1,5 +1,6 @@
 import subprocess
 import time
+from datetime import datetime
 
 
 
@@ -41,7 +42,7 @@ while True:
 					namedDevices = f.readlines()
 					if element not in namedDevices:
 						with open("namedDevices.txt", "w") as file:
-							file.write(element + "\n")
+							file.write(element + "\t"+ datetime.today().strftime('%Y-%m-%d'))
 
 		except:
 			pass
