@@ -6,7 +6,8 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle
 import os
-
+from datetime import datetime
+import time
 
 #TODO: add a check against empty files
 
@@ -47,7 +48,13 @@ def createBaseline(ip):
 with open('namedDevices.txt') as f:
 	for line in f.readlines():
 		ip = line.split("\t")[0]
-		createBaseline(ip)
+		date = line.split("\t")[3]
+		date = date.strip()
+		date = datetime.strptime(date, '%Y-%m-%d')
+		today = date.today()
+		delta = today - date
+		if delta.days > 7:
+			createBaseline(ip)
 
 
 
