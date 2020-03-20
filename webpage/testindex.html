@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<title>Control Panel</title>
+		<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">  
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -32,11 +33,15 @@
 						<div class="inner">
 							<h1>Defendy</h1>
 							<p id="devices" width=100%></p>
+							<script src id="myScript"></script>
+							<script type="text/javascript">
+							   // change path to match your file:
+							   let resourcePath = 'test.js';
 
-							<script src="test.js">
-
-
+							   document.getElementById('myScript').src = resourcePath + '?v=' + Date.now();
 							</script>
+
+
 							<script>loadDoc('displayDevices.txt')</script>
 
 
@@ -50,6 +55,17 @@
 							         alert('finished python script');;
 							        });
 							    }
+							</script>
+							<script>
+								function getRandomStr(length) {
+								   var result           = '';
+								   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+								   var charactersLength = characters.length;
+								   for ( var i = 0; i < length; i++ ) {
+								      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+								   }
+								   return result;
+								}
 							</script>
 
 
