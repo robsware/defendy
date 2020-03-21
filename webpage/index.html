@@ -15,9 +15,9 @@
 				<div class="inner">
 					<nav>
 						<ul>
-							<li><a href="#intro">Settings</a></li>
+							<li><a href="#intro">Overview</a></li>
 							<li><a href="#one">Trusted Devices</a></li>
-							<li><a href="#two">Alarms</a></li>
+							<li><a href="#two">Alerts</a></li>
 							<li><a href="#three">Stats</a></li>
 						</ul>
 					</nav>
@@ -31,26 +31,25 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>Defendy</h1>
-							<p id="devices" width=100%></p>
+							<p id="publicip">Public IP: </p><p id="devices"></p>
+							<script src="test.js"></script>
+							<script src="publicip.js"></script>
+							<input type="button" id='script' name="scriptbutton" value=" Scan for devices " onclick="goPython()" style="float: left;">
 
-							<script src="test.js">
-
-
-							</script>
-							<script>loadDoc('displayDevices.txt')</script>
-
-
-							<input type="button" id='script' name="scriptbutton" value=" Scan for devices " onclick="goPython()">
+							<input type="button" id='script' name="scriptbutton" value="Rename device" onclick="pullDevices()" style="float: left;">
 							<script>
-							    function goPython(){
+							    function pullDevices(){
 							        $.ajax({
 							          url: "http://127.0.0.1:8080/test.py",
 							         context: document.body
 							        }).done(function() {
-							         alert('finished python script');;
+							        	var devices = loadDoc('renameDevices.txt');
+							         alert(devices);
 							        });
 							    }
 							</script>
+							<script>loadIP('publicIP.txt')</script>
+							<script>loadDoc('displayDevices.txt')</script>
 
 
 						</div>
@@ -113,6 +112,16 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+			    function goPython(){
+			        $.ajax({
+			          url: "http://127.0.0.1:8080/test.py",
+			         context: document.body
+			        }).done(function() {
+			         alert('finished python script');;
+			        });
+			    }
+			</script>
 
 	</body>
 </html>
