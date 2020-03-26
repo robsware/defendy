@@ -34,9 +34,12 @@
 							<p id="publicip">Public IP: </p><p id="devices"></p>
 							<script src="test.js"></script>
 							<script src="publicip.js"></script>
+							<script src="pythonjs.js"></script>
+
 							<input type="button" id='script' name="scriptbutton" value=" Scan for devices " onclick="goPython()" style="float: left;">
 
 							<input type="button" id='script' name="scriptbutton" value="Rename device" onclick="pullDevices()" style="float: left;">
+							<input type="button" id='script' name="scriptbutton" value="Rename me bitch" onclick="httpGet('http://127.0.0.1:5000/my-route?page=10&filter=10')" style="float: left;">
 							<script>
 							    function pullDevices(){
 							        $.ajax({

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>Dynamic Dropdown</title>
+	
+	<link rel='stylesheet' href='css/style.css'>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<script>
+		$(function() {
+		 
+			$("#text-zero").change(function() {
+				$("#text-two").load("textdata/" + $(this).val() + ".txt");
+			});
+
+
+		});
+	</script>
+	<script>
+		$(function() {
+		
+			$("#text-one").load("textdata/" + 'renameDevices' + ".txt?20111207");
+
+
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="page-wrap">
+	
+		<h1>Pulls from text files</h1>
+
+		<select id="text-one">
+			<option selected value="base">Please Select</option>
+			<option value="beverages">Beverages</option>
+			<option value="renameDevices" autocomplete="off">Devices</option>
+			<option value="snacks">Snacks</option>
+		</select>
+		
+		<br />
+		
+
+		<form method="POST" name="myform" action="index.php?action=contact_agent&agent_id="  onsubmit="SetData()">
+		  <select name="agent" id="agent">
+		    <option value="1">Agent Homer</option>
+		    <option value="2">Agent Lenny</option>
+		    <option value="3">Agent Carl</option>
+		  </select>
+		</form>
+		<input class="SubmitButton" type="submit" name="SUBMITBUTTON" value="Submit" style="font-size:20px; "/>
+
+		
+
+
+	
+	</div>
+	
+</body>
+
+</html>
