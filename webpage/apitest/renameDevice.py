@@ -12,7 +12,9 @@ app = flask.Flask(__name__)
 def my_route():
   oldDeviceName = request.args.get('oldName', default = 1, type = str)
   newDeviceName = request.args.get('newName', default = 1, type = str)
-  oldDeviceName = oldDeviceName.split(" ", 1)[1]
+  print (oldDeviceName)
+  print (newDeviceName)
+  oldDeviceName = oldDeviceName.split(" ")[1]
   with open('namedDevices.txt') as f:
   	namedDevices = f.readlines()
   	for num, line in enumerate(namedDevices, 1):
