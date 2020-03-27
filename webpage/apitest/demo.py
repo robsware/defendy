@@ -5,7 +5,7 @@ print ("Known Devices: ")
 
 #deviceNumber = input("Select a device to rename: ")
 oldDeviceName = sys.argv[1]
-oldDeviceName = oldDeviceName.split(" ")[1]
+oldDeviceName = oldDeviceName.split(" ", 1)[1]
 print (oldDeviceName)
 
 newDeviceName = sys.argv[2]

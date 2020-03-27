@@ -1,26 +1,32 @@
 import sys
+import flask
+import os 
+from flask import request
 
-print ("Known Devices: ")
+app = flask.Flask(__name__)
 
-with open('namedDevices.txt') as f:
-	namedDevices = f.readlines()
-	i = 1
-	for name in namedDevices:
-		print (str(i) + ". " + name)
-		i += 1
 
-#deviceNumber = input("Select a device to rename: ")
-deviceNumber = sys.argv[1]
-deviceNumber = int(deviceNumber) - 1
 
-newDeviceName = sys.argv[2]
+@app.route('/rename', methods=['GET'])
 
-with open('namedDevices.txt') as f:
-	namedDevices = f.readlines()
-	deviceToRename = namedDevices[deviceNumber]
-	deviceName = deviceToRename.split("\t")[2]
-	deviceToRename = deviceToRename.replace(deviceName, newDeviceName)
-	namedDevices[deviceNumber] = deviceToRename
+def my_route():
+  oldDeviceName = request.args.get('oldName', default = 1, type = str)
+  newDeviceName = request.args.get('newName', default = 1, type = str)
+  oldDeviceName = oldDeviceName.split(" ", 1)[1]
+  with open('namedDevices.txt') as f:
+  	namedDevices = f.readlines()
+  	for num, line in enumerate(namedDevices, 1):
+  		if oldDeviceName in line:
+  			line = line.replace(oldDeviceName, newDeviceName)
+  			print (namedDevices[num-1])
+  			namedDevices[num-1] = line
+  			print (namedDevices[num-1])
 
-with open('namedDevices.txt', 'w') as f:
-	f.writelines(namedDevices)
+  with open('namedDevices.txt', 'w') as f:
+  	f.writelines(namedDevices)
+
+
+  return("Ok")
+
+app.run()
+
