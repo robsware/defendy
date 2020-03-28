@@ -10,9 +10,7 @@
 
 	<script>
 		$(function() {
-		
-			$("#text-one").load("textdata/" + 'renameDevices' + ".txt?20111207");
-
+			$("#pullListDevices").load('textdata/renameDevices.txt');
 
 		});
 	</script>
@@ -22,16 +20,11 @@
 
 	<div id="page-wrap">
 	
-		<h1>Pulls from text files</h1>
-
-
-
-		
 		<br>
 
-		<label for="text-one">Choose a Device:</label>
-		<select id="text-one" name="oldName" form="carform">
-			<option value="renameDevices" autocomplete="off">Devices</option>
+		<label for="pullListDevices">Choose a Device:</label>
+		<select id="pullListDevices" name="oldName" form="carform">
+			<option value="renameDevices" autocomplete="off">Devices</option>s
 		</select>
 
 		<form action="http://127.0.0.1:5000/rename" id="carform">
