@@ -1,3 +1,3 @@
-	IP Address	MAC Address	Name
-1	10.10.0.100	c0:ee:fb:e2:9a:fc	Helios
-2	10.10.0.101	ab:cd:fb:e2:9a:gh	the vanderberg
+	IP Address	MAC Address		Name
+1	10.10.0.100	c0:ee:fb:e2:9a:fc	Arya
+2	10.10.0.101	ab:cd:fb:e2:9a:gh	liberty park

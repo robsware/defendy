@@ -38,11 +38,11 @@ def my_route():
   print ("stop")
 
   with open("displayDevices.txt") as f:
-	  lines = f.readlines()
-	  lines[0] = "\t" + "IP Address" + "\t" + "MAC Address" + "\t" + "\t" +"Name" + "\n"
+      lines = f.readlines()
+      lines[0] = "\t" + "IP Address" + "\t" + "MAC Address" + "\t" + "\t" +"Name" + "\n"
 
   with open("displayDevices.txt", "w") as f:
-	  f.writelines('<option>' + lines + '</option>')
+      f.writelines(lines)
 
 
   del displayDF["MAC Address"]

@@ -1,3 +1,3 @@
-<option>10.10.0.100	Helios
-</option><option>10.10.0.101	the vanderberg
+<option>10.10.0.100	Arya
+</option><option>10.10.0.101	liberty park
 </option>

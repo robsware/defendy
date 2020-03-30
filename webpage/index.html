@@ -16,7 +16,7 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Overview</a></li>
-							<li><a href="#one">Trusted Devices</a></li>
+							<li><a href="#one">Rename Devices</a></li>
 							<li><a href="#two">Alerts</a></li>
 							<li><a href="#three">Stats</a></li>
 						</ul>
@@ -32,30 +32,19 @@
 						<div class="inner">
 							<h1>Defendy</h1>
 							<p id="publicip">Public IP: </p><p id="devices"></p>
+							<input type="button" id='script' name="scriptbutton" value=" Scan for devices " onclick="goPython()" style="float: left;">
+
+							<input type="button" id='script' name="scriptbutton" value="Rename device" onclick="pullDevices()" style="float: left;">
 							<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 							<script src="js/getDevices.js"></script>
 							<script src="js/requestRenameDevice.js"></script>
 							<script src="js/publicip.js"></script>
+							<script src="js/alerts.js"></script>
 							<script>loadIP('publicIP.txt')</script>
 							<script>loadDoc('/textdata/displayDevices.txt')</script>
+							<script>loadAlerts('fast.log')</script>
 
-
-							<input type="button" id='script' name="scriptbutton" value=" Scan for devices " onclick="goPython()" style="float: left;">
-
-							<input type="button" id='script' name="scriptbutton" value="Rename device" onclick="pullDevices()" style="float: left;">
 							<br>
-
-							<label for="pullListDevices">Choose a Device:</label>
-							<select id="pullListDevices" name="oldName" form="deviceForm">
-								<option value="renameDevices" autocomplete="off">Devices</option>s
-							</select>
-
-							<form action="http://127.0.0.1:5000/rename" id="deviceForm">
-							  <label for="newName">New Name:</label>
-							  <input type="text" id="newName" name="newName">
-							  <input type="submit">
-							</form>
-
 							<script>
 							    function pullDevices(){
 							        $.ajax({
@@ -82,12 +71,14 @@
 				<!-- One -->
 					<section id="one" class="wrapper style2 fullscreen fade-up">
 						<div class="inner">
-							<h1>Defendy</h1>
-							<p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
-							and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">Learn more</a></li>
-							</ul>
+							<h1>Rename</h1>
+							<label for="pullListDevices">Choose a Device to rename:</label><select id="pullListDevices" name="oldName" form="deviceForm">
+								<option value="renameDevices" autocomplete="off">Devices</option>s
+							</select>
+							<form action="http://127.0.0.1:5000/rename" id="deviceForm" target="dummyframe"><label for="newName">New Name:</label><input type="text" id="newName" name="newName">
+							  <input type="submit"  onClick="alert('Device renamed successfully'); history.go(0);">
+							</form>
+							<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 						</div>
 					</section>
 
@@ -96,9 +87,9 @@
 				<!-- Two -->
 					<section id="two" class="wrapper style3 fullscreen fade-up">
 						<div class="inner">
-							<h1>Defendy</h1>
-							<p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
-							and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
+							<h1>Alerts</h1>
+							<p id="alerts">Public IP: </p>
+							<p>I keep screaming but God won't answer. So I'll do something about it.</p>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul>
@@ -108,12 +99,8 @@
 				<!-- Three -->
 					<section id="three" class="wrapper style4 fullscreen fade-up">
 						<div class="inner">
-							<h1>Defendy</h1>
-							<p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
-							and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">Learn more</a></li>
-							</ul>
+							<h1>Uptime: </h1>
+							<p>Firewall enabled</p><p>Scanner shield enabled</p><p>IDS enabled</p>
 						</div>
 					</section>
 
@@ -136,6 +123,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
 
 			<script>
 			    function goPython(){

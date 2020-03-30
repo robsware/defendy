@@ -1,2 +1,2 @@
-10.10.0.100	c0:ee:fb:e2:9a:fc	Helios	2020-03-17
-10.10.0.101	ab:cd:fb:e2:9a:gh	the vanderberg	2020-03-10
+10.10.0.100	c0:ee:fb:e2:9a:fc	Arya	2020-03-17
+10.10.0.101	ab:cd:fb:e2:9a:gh	liberty park	2020-03-10

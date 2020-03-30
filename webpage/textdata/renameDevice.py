@@ -3,6 +3,9 @@ import flask
 import os 
 from flask import request
 import pandas as pd
+import subprocess
+import time
+from datetime import datetime
 
 app = flask.Flask(__name__)
 
@@ -35,7 +38,13 @@ def my_route():
 
 	displayDF.to_csv('displayDevices.txt', sep='\t')
 
-	print ("stop")
+	with open("displayDevices.txt") as f:
+		lines = f.readlines()
+		lines[0] = "\t" + "IP Address" + "\t" + "MAC Address" + "\t" + "\t" +"Name" + "\n"
+
+	with open("displayDevices.txt", "w") as f:
+		f.writelines(lines)
+
 
 	del displayDF["MAC Address"]
 	displayDF.to_csv('renameDevices.txt', sep='\t', index=False, header=False)
@@ -52,7 +61,21 @@ def my_route():
 
 
 
-	return("Ok")
+	return("Device renamed successfully")
+
+@app.route('/update', methods=['GET'])
+def my_route1():
+	x = 1
+	x = x + 1
+	return(str(x))
+
+
+@app.route('/scan', methods=['GET'])
+def my_route2():
+
+
+
+	return("Scanning..")
 
 app.run()
 
