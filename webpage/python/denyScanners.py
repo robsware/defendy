@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 
 ips = ["74.82.47.5",

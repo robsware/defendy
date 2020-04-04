@@ -1,18 +1,8 @@
+#!/usr/bin/python
 import subprocess
 import time
 from datetime import datetime
 
-
-
-try:
-    file = open('knownDevices.txt', 'r')
-except IOError:
-    file = open('knownDevices.txt', 'w')
-
-try:
-    file = open('namedDevices.txt', 'r')
-except IOError:
-    file = open('namedDevices.txt', 'w')
 
 #scan for connected devices
 

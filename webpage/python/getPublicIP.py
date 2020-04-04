@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 import iptc
 
@@ -7,4 +8,6 @@ publicIP = requests.get('http://ifconfig.me')
 publicIP = publicIP.content
 publicIP = publicIP.decode("utf-8") 
 
-print (publicIP)
+
+with open("publicIP.txt", "w") as f:
+    f.writelines(publicIP)

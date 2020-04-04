@@ -32,36 +32,16 @@
 						<div class="inner">
 							<h1>Defendy</h1>
 							<p id="publicip">Public IP: </p><p id="devices"></p>
-							<input type="button" id='script' name="scriptbutton" value=" Scan for devices " onclick="goPython()" style="float: left;">
-
-							<input type="button" id='script' name="scriptbutton" value="Rename device" onclick="pullDevices()" style="float: left;">
 							<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 							<script src="js/getDevices.js"></script>
 							<script src="js/requestRenameDevice.js"></script>
 							<script src="js/publicip.js"></script>
 							<script src="js/alerts.js"></script>
-							<script>loadIP('publicIP.txt')</script>
+							<script>loadIP('/python/publicIP.txt')</script>
 							<script>loadDoc('/textdata/displayDevices.txt')</script>
-							<script>loadAlerts('fast.log')</script>
+							<script>loadAlerts('/python/fast_prio.log')</script>
 
-							<br>
-							<script>
-							    function pullDevices(){
-							        $.ajax({
-							          url: "http://127.0.0.1:8080/test.py",
-							         context: document.body
-							        }).done(function() {
-							        	var devices = loadDoc('renameDevices.txt');
-							         alert(devices);
-							        });
-							    }
-							</script>
-							<script>
-								$(function() {
-									$("#pullListDevices").load('textdata/renameDevices.txt?' + new Date().getTime());
 
-								});
-							</script>
 
 
 
@@ -69,7 +49,7 @@
 					</section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style2 fullscreen fade-up">
+					<section id="one" class="wrapper style1-alt fullscreen fade-up">
 						<div class="inner">
 							<h1>Rename</h1>
 							<label for="pullListDevices">Choose a Device to rename:</label><select id="pullListDevices" name="oldName" form="deviceForm">
@@ -85,22 +65,17 @@
 	
 
 				<!-- Two -->
-					<section id="two" class="wrapper style3 fullscreen fade-up">
+					<section id="two" class="wrapper style2-alt fullscreen fade-up">
 						<div class="inner">
 							<h1>Alerts</h1>
 							<p id="alerts">Public IP: </p>
-							<p>I keep screaming but God won't answer. So I'll do something about it.</p>
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">Learn more</a></li>
-							</ul>
 						</div>
 					</section>
 
 				<!-- Three -->
-					<section id="three" class="wrapper style4 fullscreen fade-up">
+					<section id="three" class="wrapper style1-alt fullscreen fade-up">
 						<div class="inner">
-							<h1>Uptime: </h1>
-							<p>Firewall enabled</p><p>Scanner shield enabled</p><p>IDS enabled</p>
+							<p>Firewall enabled<br>Scanner shield enabled<br>IDS enabled</p>
 						</div>
 					</section>
 
@@ -110,7 +85,7 @@
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>Defendy. GPL license.</li><li>Made by @robsware</li>
 					</ul>
 				</div>
 			</footer>
@@ -123,18 +98,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
-
-			<script>
-			    function goPython(){
-			        $.ajax({
-			          url: "http://127.0.0.1:8080/test.py",
-			         context: document.body
-			        }).done(function() {
-			         alert('finished python script');;
-			        });
-			    }
-			</script>
 
 	</body>
 </html>
