@@ -26,6 +26,7 @@ iptables -I OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # Allow incoming SSH from main home network
 iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW -j ACCEPT
+iptables -A INPUT -i wlan1 -p tcp --dport 8000 -m state --state NEW -j ACCEPT
 
 # Allow DNS outbound
 iptables -A OUTPUT -p udp --dport 53 -m state --state NEW -j ACCEPT
