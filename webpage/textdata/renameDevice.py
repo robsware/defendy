@@ -9,6 +9,11 @@ from datetime import datetime
 
 app = flask.Flask(__name__)
 
+#set current folder as main folder
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 
 
 @app.route('/rename', methods=['GET'])
