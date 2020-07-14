@@ -8,3 +8,4 @@ function loadDoc(url) {
   xhttp.open("GET", url + '?_=' + new Date().getTime(), true);
   xhttp.send();
 }
+

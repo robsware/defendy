@@ -8,7 +8,6 @@ sudo service hostapd restart
 
 sudo bash firewall.sh
 
-#TODO: add sudo and port 80
 nohup python3 -m http.server --directory webpage/ 80&
 
 python3 webpage/textdata/renameDevice.py &

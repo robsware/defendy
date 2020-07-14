@@ -24,9 +24,10 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -I OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-# Allow incoming SSH from main home network
+# Allow incoming SSH and server requests from main home network
 iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW -j ACCEPT
 iptables -A INPUT -i wlan1 -p tcp --dport 80 -m state --state NEW -j ACCEPT
+iptables -A INPUT -i wlan1 -p tcp --dport 5000 -m state --state NEW -j ACCEPT
 
 # Allow DNS outbound
 iptables -A OUTPUT -p udp --dport 53 -m state --state NEW -j ACCEPT
@@ -46,4 +47,4 @@ iptables -A FORWARD -s 10.10.0.0/24 -d 10.10.0.0/24 -j DROP
 iptables -A FORWARD -s 10.10.0.0/24 -d 192.168.0.0/24 -j DROP
 iptables -A FORWARD -o eth0 -s 10.10.0.0/24 -j ACCEPT
 
-python3 /webpage/python/denyScanners.py
+python3 webpage/python/denyScanners.py

@@ -8,6 +8,7 @@ then
 	sed -i "s/wlan1/$newInterface/g" hostapd.conf
 	sed -i "s/wlan1/$newInterface/g" interfaces
 	sed -i "s/wlan1/$newInterface/g" webpage/textdata/renameDevice.py
+	sed -i "s/wlan1/$newInterface/g" webpage/textdata/statusCheck.py
 else
 	echo "Keeping original interface, wlan1"
 	newInterface=wlan1
@@ -24,7 +25,7 @@ sed -i "s/securepass/$newPassword/g" hostapd.conf
 #sudo cp hostapd.conf /etc/hostapd/hostapd.conf
 #sudo cp interfaces /etc/network/interfaces
 
-
+sudo pip3 install -r requirements.txt
 
 
 echo "Done"

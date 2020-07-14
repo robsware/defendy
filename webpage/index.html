@@ -37,9 +37,9 @@
 							<script src="js/requestRenameDevice.js"></script>
 							<script src="js/publicip.js"></script>
 							<script src="js/alerts.js"></script>
-							<script>loadIP('/python/publicIP.txt')</script>
+							<script>loadIP('/textdata/publicIP.txt')</script>
 							<script>loadDoc('/textdata/displayDevices.txt')</script>
-							<script>loadAlerts('/python/fast_prio.log')</script>
+							<script>loadAlerts('/textdata/fast_prio.log')</script>
 							<script>
 								$(function() {
 									$("#pullListDevices").load('textdata/renameDevices.txt');
@@ -61,7 +61,7 @@
 							<label for="pullListDevices">Choose a Device to rename:</label><select id="pullListDevices" name="oldName" form="deviceForm">
 								<option value="renameDevices" autocomplete="off">Devices</option>s
 							</select>
-							<form action="http://127.0.0.1:5000/rename" id="deviceForm" target="dummyframe"><label for="newName">New Name:</label><input type="text" id="newName" name="newName">
+							<form action="http://10.10.0.1:5000/rename" id="deviceForm" target="dummyframe"><label for="newName">New Name:</label><input type="text" id="newName" name="newName">
 							  <input type="submit"  onClick="alert('Device renamed successfully'); history.go(0);">
 							</form>
 							<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
