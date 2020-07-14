@@ -6,11 +6,11 @@ sudo ifdown $newInterface
 sudo ifup $newInterface
 sudo service hostapd restart
 
-sudo suricata -c /etc/suricata/suricata.yaml -i $newInterface
+sudo firewall.sh
 
 #TODO: add sudo and port 80
-python3 -m http.server --directory webpage/
+nohup python3 -m http.server --directory webpage/ 80&
 
-python3 webpage/textdata/renameDevice.py
+nohup python3 webpage/textdata/renameDevice.py &
 
-sudo firewall.sh
+sudo suricata -c /etc/suricata/suricata.yaml -i $newInterface -D
