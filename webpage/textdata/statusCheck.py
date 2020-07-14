@@ -9,16 +9,17 @@ import pandas as pd
 def detectDevices():
 	string="iw wlan1 station dump | grep Station"
 	result=subprocess.getoutput(string)
-	try:
-		macAddr = result.split(" ")[1]
-		with open('knownDevices.txt') as f:
-			knownDevices = f.readlines()
-			if macAddr not in knownDevices:
-				with open("knownDevices.txt", "w") as file:
-					file.write(macAddr + "\n")
-	except:
-		print("No devices connected yet")
-		return()
+	for line in result.splitlines():
+		try:
+			macAddr = line.split(" ")[1]
+			with open('knownDevices.txt') as f:
+				knownDevices = f.readlines()
+				if macAddr not in knownDevices:
+					with open("knownDevices.txt", "a") as file:
+						file.write(macAddr + "\n")
+		except:
+			print("No devices connected yet")
+	return()
 
 
 	arpScan="sudo arp-scan --interface=wlan1 --localnet"
