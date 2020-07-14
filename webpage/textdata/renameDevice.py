@@ -1,7 +1,6 @@
 from datetime import datetime
 import flask
 from flask import request
-import iptc
 import os
 import pandas as pd
 import requests

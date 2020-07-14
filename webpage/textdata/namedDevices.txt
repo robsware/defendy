@@ -1,2 +1,2 @@
-10.10.0.100	c0:ee:fb:e2:9a:fc	Dragon	2020-03-17
-10.10.0.101	ab:cd:fb:e2:9a:gh	Helios	2020-03-10
+10.10.0.100	c0:ee:fb:e2:9a:fc	Helios	2020-03-17
+10.10.0.101	ab:cd:fb:e2:9a:gh	Janus	2020-03-10
