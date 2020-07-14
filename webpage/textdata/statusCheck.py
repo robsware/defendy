@@ -14,11 +14,11 @@ def detectDevices():
 			macAddr = line.split(" ")[1]
 			with open('knownDevices.txt') as f:
 				knownDevices = f.readlines()
-				if macAddr not in knownDevices:
+				if macAddr+'\n' not in knownDevices:
 					with open("knownDevices.txt", "a") as file:
 						file.write(macAddr + "\n")
 		except:
-			print("No devices connected yet")
+			print("No new devices connected yet")
 	return()
 
 
