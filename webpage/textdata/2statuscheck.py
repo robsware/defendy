@@ -4,7 +4,19 @@ import requests
 import subprocess
 import sys
 import time
-import pandas as pd
+
+def checkAlerts():
+	with open('/var/log/suricata/fast.log') as f:
+	#with open('fast.log') as f:
+		alerts = f.readlines()
+		with open ('fast_prio.log', 'w') as wf:
+			for line in alerts:
+				if '[Priority: 1]' in line or '[Priority: 2]' in line:
+					#line = line.split('{TCP} ')[1]
+					#line = line.split(' ')[0]
+					wf.write(line)
+	return()
+
 
 def detectDevices():
 	string="iw wlan1 station dump | grep Station"
@@ -38,48 +50,8 @@ def detectDevices():
 
 		except:
 			pass
-	
-	
-	displayDF = pd.read_csv('namedDevices.txt', names=["IP Address","MAC Address","Name","Date Added"], sep='\t')
-
-	displayDF.index += 1 
-	del displayDF["Date Added"]
-
-	displayDF.to_csv('displayDevices.txt', sep='\t')
-
-	with open("displayDevices.txt") as f:
-		lines = f.readlines()
-		lines[0] = "\t" + "IP Address" + "\t" + "MAC Address" + "\t" + "\t" +"Name" + "\n"
-
-	with open("displayDevices.txt", "w") as f:
-		f.writelines(lines)
-	
-
-	del displayDF["MAC Address"]
-	displayDF.to_csv('renameDevices.txt', sep='\t', index=False, header=False)
-
-	with open("renameDevices.txt") as f:
-		lines = f.readlines()
-		lines = [line + '</option>' for line in lines]
-		lines = ['<option>' + line  for line in lines]
-
-
-	with open("renameDevices.txt", "w") as f:
-		f.writelines(lines)
-
 	return()
 
-def checkAlerts():
-	with open('/var/log/suricata/fast.log') as f:
-	#with open('fast.log') as f:
-		alerts = f.readlines()
-		with open ('fast_prio.log', 'w') as wf:
-			for line in alerts:
-				if '[Priority: 1]' in line or '[Priority: 2]' in line:
-					#line = line.split('{TCP} ')[1]
-					#line = line.split(' ')[0]
-					wf.write(line)
-	return()
 
 def getPublicIP():
 	publicIP = requests.get('http://ifconfig.me')
@@ -93,9 +65,8 @@ def getPublicIP():
 	return()
 
 
-
 while True:
-	detectDevices()
 	checkAlerts()
+	detectDevices()
 	getPublicIP()
-	time.sleep(20)
+	time.sleep(15)
