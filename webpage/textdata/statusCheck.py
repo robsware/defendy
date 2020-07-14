@@ -19,28 +19,45 @@ def detectDevices():
 						file.write(macAddr + "\n")
 		except:
 			print("No new devices connected yet")
-	return()
+			return()
 
 
 	arpScan="sudo arp-scan --interface=wlan1 --localnet"
 	allDevices=subprocess.getoutput(arpScan)
+	#print ("ARP SCAN:", allDevices)
 	listAllDevices = allDevices.splitlines()
 
 
-	for element in listAllDevices:
-		try:
-			if macAddr in element:
-				print ("Device connected: ", element)
-				with open('namedDevices.txt') as f:
-					namedDevices = f.readlines()
-					if element not in namedDevices:
-						with open("namedDevices.txt", "w") as file:
-							file.write(element + "\t"+ datetime.today().strftime('%Y-%m-%d'))
+	with open("knownDevices.txt") as macf:
+		macMultiAddr = macf.readlines()
+		#print (macMultiAddr)
+		macMultiAddr = [x.replace('\n', '') for x in macMultiAddr]
+		macMultiAddr = list(filter(None, macMultiAddr))
+		#print (macMultiAddr)
+		for macAddr in macMultiAddr:
 
-		except:
-			pass
+			for element in listAllDevices:
+				try:
+					#print(macAddr)
+					#print (macAddr.rstrip())
+					if macAddr.rstrip() in element:
+						print ("Found " + macAddr + "in " + element) 
+						#print (macAddr.rstrip())
+						#print ("Device connected: ", element)
+						with open('namedDevices.txt') as f:
+							namedDevices = f.readlines()
+							print (element.split("\t")[1])
+							print (namedDevices)
+							if any(element.split("\t")[1] in s for s in namedDevices):
+								break
+							else:
+								with open("namedDevices.txt", "a") as file:
+									file.write(element + "\t"+ datetime.today().strftime('%Y-%m-%d')+ '\n')
+
+				except:
+					pass
 	
-	
+		
 	displayDF = pd.read_csv('namedDevices.txt', names=["IP Address","MAC Address","Name","Date Added"], sep='\t')
 
 	displayDF.index += 1 
@@ -99,4 +116,4 @@ while True:
 	detectDevices()
 	checkAlerts()
 	getPublicIP()
-	time.sleep(20)
+	time.sleep(5)
