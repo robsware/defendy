@@ -7,11 +7,16 @@ then
 	read newInterface
 	sed -i "s/wlan1/$newInterface/g" hostapd.conf
 	sed -i "s/wlan1/$newInterface/g" interfaces
+	sed -i "s/wlan1/$newInterface/g" webpage/textdata/renameDevice.py
 else
 	echo "Keeping original interface, wlan1"
 	newInterface=wlan1
 
 fi
+
+echo "Please enter a password for the wifi network:"
+read newPassword
+sed -i "s/securepass/$newPassword/g" hostapd.conf
 
 
 #sudo apt-get install hostapd

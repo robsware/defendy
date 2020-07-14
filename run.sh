@@ -13,3 +13,4 @@ python3 -m http.server --directory webpage/
 
 python3 webpage/textdata/renameDevice.py
 
+sudo firewall.sh
