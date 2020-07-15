@@ -51,6 +51,7 @@ def detectDevices():
 							if any(element.split("\t")[1] in s for s in namedDevices):
 								break
 							else:
+								#append to list, write list to file
 								with open("namedDevices.txt", "a") as file:
 									file.write(element + "\t"+ datetime.today().strftime('%Y-%m-%d')+ '\n')
 

@@ -47,4 +47,4 @@ iptables -A FORWARD -s 10.10.0.0/24 -d 10.10.0.0/24 -j DROP
 iptables -A FORWARD -s 10.10.0.0/24 -d 192.168.0.0/24 -j DROP
 iptables -A FORWARD -o eth0 -s 10.10.0.0/24 -j ACCEPT
 
-python3 webpage/python/denyScanners.py
+python3 webpage/textdata/denyScanners.py
