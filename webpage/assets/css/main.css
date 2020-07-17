@@ -272,60 +272,6 @@ input, select, textarea {
 		top: -0.5em;
 	}
 
-	blockquote {
-		border-left: solid 4px rgba(255, 255, 255, 0.15);
-		font-style: italic;
-		margin: 0 0 2em 0;
-		padding: 0.5em 0 0.5em 2em;
-	}
-
-	code {
-		background: rgba(255, 255, 255, 0.05);
-		border-radius: 0.25em;
-		border: solid 1px rgba(255, 255, 255, 0.15);
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0.25em;
-		padding: 0.25em 0.65em;
-	}
-
-	pre {
-		-webkit-overflow-scrolling: touch;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0 2em 0;
-	}
-
-		pre code {
-			display: block;
-			line-height: 1.75em;
-			padding: 1em 1.5em;
-			overflow-x: auto;
-		}
-
-	hr {
-		border: 0;
-		border-bottom: solid 1px rgba(255, 255, 255, 0.15);
-		margin: 2em 0;
-	}
-
-		hr.major {
-			margin: 3em 0;
-		}
-
-	.align-left {
-		text-align: left;
-	}
-
-	.align-center {
-		text-align: center;
-	}
-
-	.align-right {
-		text-align: right;
-	}
-
-
 /* Button */
 
 	input[type="submit"],
@@ -379,22 +325,6 @@ input, select, textarea {
 			width: 100%;
 		}
 
-		input[type="submit"].small,
-		input[type="reset"].small,
-		input[type="button"].small,
-		button.small,
-		.button.small {
-			font-size: 0.4em;
-		}
-
-		input[type="submit"].large,
-		input[type="reset"].large,
-		input[type="button"].large,
-		button.large,
-		.button.large {
-			font-size: 0.8em;
-		}
-
 		input[type="submit"].primary,
 		input[type="reset"].primary,
 		input[type="button"].primary,
@@ -402,28 +332,6 @@ input, select, textarea {
 		.button.primary {
 			background-color: #ffffff;
 			color: #312450 !important;
-		}
-
-			input[type="submit"].primary:after,
-			input[type="reset"].primary:after,
-			input[type="button"].primary:after,
-			button.primary:after,
-			.button.primary:after {
-				display: none;
-			}
-
-		input[type="submit"].disabled, input[type="submit"]:disabled,
-		input[type="reset"].disabled,
-		input[type="reset"]:disabled,
-		input[type="button"].disabled,
-		input[type="button"]:disabled,
-		button.disabled,
-		button:disabled,
-		.button.disabled,
-		.button:disabled {
-			cursor: default;
-			opacity: 0.5;
-			pointer-events: none;
 		}
 
 		input[type="submit"]:hover,
@@ -434,33 +342,6 @@ input, select, textarea {
 			border-color: rgba(255, 255, 255, 0.55) !important;
 		}
 
-			input[type="submit"]:hover:after,
-			input[type="reset"]:hover:after,
-			input[type="button"]:hover:after,
-			button:hover:after,
-			.button:hover:after {
-				opacity: 0.05;
-				-moz-transform: scale(1);
-				-webkit-transform: scale(1);
-				-ms-transform: scale(1);
-				transform: scale(1);
-			}
-
-			input[type="submit"]:hover:active,
-			input[type="reset"]:hover:active,
-			input[type="button"]:hover:active,
-			button:hover:active,
-			.button:hover:active {
-				border-color: #ffffff !important;
-			}
-
-				input[type="submit"]:hover:active:after,
-				input[type="reset"]:hover:active:after,
-				input[type="button"]:hover:active:after,
-				button:hover:active:after,
-				.button:hover:active:after {
-					opacity: 0.1;
-				}
 
 
 /* Form */
@@ -634,39 +515,6 @@ input, select, textarea {
 			}
 
 		}
-
-/* Section/Article */
-
-	section.special, article.special {
-		text-align: center;
-	}
-
-	header p {
-		color: rgba(255, 255, 255, 0.35);
-		position: relative;
-		margin: 0 0 1.5em 0;
-	}
-
-	header h2 + p {
-		font-size: 1.25em;
-		margin-top: -1em;
-		line-height: 1.5em;
-	}
-
-	header h3 + p {
-		font-size: 1.1em;
-		margin-top: -0.8em;
-		line-height: 1.5em;
-	}
-
-	header h4 + p,
-	header h5 + p,
-	header h6 + p {
-		font-size: 0.9em;
-		margin-top: -0.6em;
-		line-height: 1.5em;
-	}
-
 
 
 /* Wrapper */
