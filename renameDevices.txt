@@ -1,3 +1,0 @@
-<option>10.10.0.100	QWERTY
-</option><option>10.10.0.101	Fake Device
-</option>

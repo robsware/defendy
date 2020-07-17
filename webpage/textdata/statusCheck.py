@@ -117,4 +117,4 @@ while True:
 	detectDevices()
 	checkAlerts()
 	getPublicIP()
-	time.sleep(5)
+	time.sleep(15)

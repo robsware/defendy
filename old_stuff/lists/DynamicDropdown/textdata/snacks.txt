@@ -1,2 +1,0 @@
-<option>Chips</option>
-<option>Cookies</option>

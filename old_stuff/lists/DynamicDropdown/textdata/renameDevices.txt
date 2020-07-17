@@ -1,3 +1,0 @@
-<option>10.10.0.100	oof
-</option><option>10.10.0.101	the vanderberg
-</option>
