@@ -79,7 +79,7 @@ def detectDevices():
 
 	with open("renameDevices.txt") as f:
 		lines = f.readlines()
-		lines = [line + '</option>' for line in lines]
+		lines = [line + '</option><br>' for line in lines]
 		lines = ['<option>' + line  for line in lines]
 
 

@@ -37,15 +37,17 @@
 							<script src="js/requestRenameDevice.js"></script>
 							<script src="js/publicip.js"></script>
 							<script src="js/alerts.js"></script>
+							<script src="js/getRenameDevices.js"></script>
 							<script>loadIP('/textdata/publicIP.txt')</script>
 							<script>loadDoc('/textdata/displayDevices.txt')</script>
 							<script>loadAlerts('/textdata/fast_prio.log')</script>
-							<script>
+							<script>pullListDevices('/textdata/renameDevices.txt')</script> 
+							<!--<script>
 								$(function() {
 									$("#pullListDevices").load('textdata/renameDevices.txt');
 						
 								});
-							</script>
+							</script>-->
 
 
 
@@ -74,7 +76,7 @@
 					<section id="two" class="wrapper style2-alt fullscreen fade-up">
 						<div class="inner">
 							<h1>Alerts</h1>
-							<p id="alerts">Public IP: </p>
+							<p id="alerts"> </p>
 						</div>
 					</section>
 
