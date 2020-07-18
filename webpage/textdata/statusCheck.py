@@ -6,6 +6,10 @@ import sys
 import time
 import pandas as pd
 
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 def detectDevices():
 	string="iw wlan1 station dump | grep Station"
 	result=subprocess.getoutput(string)
