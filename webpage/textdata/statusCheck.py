@@ -69,6 +69,8 @@ def detectDevices():
 	with open("displayDevices.txt") as f:
 		lines = f.readlines()
 		lines[0] = "\t" + "IP Address" + "\t" + "MAC Address" + "\t" + "\t" +"Name" + "\n"
+		lines = [line + '</p>' for line in lines]
+		lines = ['<p>' + line  for line in lines]
 
 	with open("displayDevices.txt", "w") as f:
 		f.writelines(lines)

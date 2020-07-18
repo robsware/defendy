@@ -31,7 +31,8 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>Defendy</h1>
-							<p id="publicip">Public IP: </p><p id="devices"></p>
+							<p id="publicip">Public IP: </p><br><p id="devices"></p>
+
 							<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 							<script src="js/getDevices.js"></script>
 							<script src="js/requestRenameDevice.js"></script>
@@ -42,12 +43,7 @@
 							<script>loadDoc('/textdata/displayDevices.txt')</script>
 							<script>loadAlerts('/textdata/fast_prio.log')</script>
 							<script>pullListDevices('/textdata/renameDevices.txt')</script> 
-							<!--<script>
-								$(function() {
-									$("#pullListDevices").load('textdata/renameDevices.txt');
-						
-								});
-							</script>-->
+
 
 
 
