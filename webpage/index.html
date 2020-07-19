@@ -79,7 +79,16 @@
 				<!-- Three -->
 					<section id="three" class="wrapper style1-alt fullscreen fade-up">
 						<div class="inner">
-							<p>Firewall enabled<br>Scanner shield enabled<br>IDS enabled</p>
+							<script>pullRemoveDevices('/textdata/renameDevices.txt')</script> 
+							<h1>Remove</h1>
+							<label for="pullRemoveDevices">Select a Device to remove:</label><select id="pullRemoveDevices" name="removeName" form="deviceRemoveForm">
+								<option value="renameDevices" autocomplete="off">Devices</option>
+							</select>
+
+							<form action="http://10.10.0.1:5000/remove" id="deviceRemoveForm" target="dummyframe">
+							  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
+							</form>
+							<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 						</div>
 					</section>
 
