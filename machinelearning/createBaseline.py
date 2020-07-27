@@ -35,7 +35,29 @@ def createBaseline(ip):
 	isolationForest = IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0, max_features=1.0, max_samples='auto', n_estimators=100, n_jobs=None, random_state=None, verbose=0, warm_start=False)
 	relevantCols = trafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
 	isolationForest.fit(relevantCols)
-	pickle.dump(isolationForest, open('trained_' + ip + '.sav', 'wb'))
+	pickle.dump(isolationForest, open('outboundTrained_' + ip + '.sav', 'wb'))
+
+
+
+
+
+	trafficData = pd.read_csv('inbound' + ip + '.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
+	#encode source IP
+	values = np.array(trafficData['srcIP'])
+	integer_encoded = LabelEncoder().fit_transform(values)
+	trafficData['intEncodedSourceIP'] = integer_encoded
+	#encode destination IP
+	values = np.array(trafficData['dstIP'])
+	integer_encoded = LabelEncoder().fit_transform(values)
+	trafficData['intEncodedDestIP'] = integer_encoded
+
+	#training
+	isolationForest = IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0, max_features=1.0, max_samples='auto', n_estimators=100, n_jobs=None, random_state=None, verbose=0, warm_start=False)
+	relevantCols = trafficData[["intEncodedSourceIP", "srcPort", "intEncodedDestIP", "dstPort"]]
+	isolationForest.fit(relevantCols)
+	pickle.dump(isolationForest, open('inboundTrained_' + ip + '.sav', 'wb'))
+
+
 
 	return()
 

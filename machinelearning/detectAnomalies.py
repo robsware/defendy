@@ -5,8 +5,12 @@ import matplotlib.pyplot as pp
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle
+import os
 
-
+#set location directory as working directory
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
 
 def loadModel(ip):
 	try:
