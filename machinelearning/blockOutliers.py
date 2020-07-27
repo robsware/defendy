@@ -5,14 +5,23 @@ import pandas as pd
 
 for outliersFile in os.listdir('.'):
    if re.match('outliers', outliersFile):
-       print (outliersFile)
        IPForFiltering = outliersFile.split('_')[1]
        IPForFiltering = IPForFiltering.split('.csv')[0]
-       print (IPForFiltering)
        outliersFileContent = pd.read_csv(outliersFile) 
        print (outliersFileContent)
        fieldsFilteredByIP = outliersFileContent[outliersFileContent['srcIP'].str.match(IPForFiltering)]
        print (fieldsFilteredByIP)
+       for index, row in fieldsFilteredByIP.iterrows():
+           #with open("IPTablesRules_" + IPForFiltering, 'w'):
+           #print(row['srcIP'], row['srcPort'])
+           print("iptables -A OUTPUT -p tcp -d " + row['srcIP'] + " --destination-port " + str(row['srcPort']) + " -j DROP")
+            
+           #print(row['srcIP'], row['srcPort'])
+
+       
+
+
+       #fieldsFilteredByIP[["srcIP", "srcPort", "dstIP", "dstPort"]].to_csv("ipTablesRules_" + ip + ".csv", index=None)
 
 
 
