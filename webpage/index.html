@@ -18,7 +18,8 @@
 							<li><a href="#intro">Overview</a></li>
 							<li><a href="#one">Rename Devices</a></li>
 							<li><a href="#two">Alerts</a></li>
-							<li><a href="#three">Stats</a></li>
+							<li><a href="#three">Remove Device</a></li>
+							<li><a href="#four">Reser Firewall Rules</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -91,6 +92,34 @@
 							<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 						</div>
 					</section>
+
+
+
+
+				<!-- Four -->
+				<section id="four" class="wrapper style2 fullscreen fade-up">
+					<div class="inner">
+						<script>pullRemoveDevices('/textdata/renameDevices.txt')</script> 
+						<h1>Reset Firewall Rules</h1>
+						<label for="pullRemoveDevices">Select a Device to reset firewall rules:</label><select id="pullRemoveDevices" name="removeName" form="deviceRemoveForm">
+							<option value="renameDevices" autocomplete="off">Devices</option>
+						</select>
+
+						<form action="http://10.10.0.1:5000/remove" id="deviceRemoveForm" target="dummyframe">
+						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
+						</form>
+						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+
+						<h2>Reset inbound rules to default</h2>
+
+						<form action="http://10.10.0.1:5000/remove" id="deviceRemoveForm" target="dummyframe">
+							<input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
+						</form>
+						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+					</div>
+				</section>
+
 
 			</div>
 
