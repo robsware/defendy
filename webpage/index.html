@@ -105,7 +105,7 @@
 							<option value="renameDevices" autocomplete="off">Devices</option>
 						</select>
 
-						<form action="http://10.10.0.1:5000/remove" id="deviceRemoveForm" target="dummyframe">
+						<form action="http://10.10.0.1:5000/reset" id="deviceRemoveForm" target="dummyframe">
 						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
@@ -113,7 +113,7 @@
 
 						<h2>Reset inbound rules to default</h2>
 
-						<form action="http://10.10.0.1:5000/remove" id="deviceRemoveForm" target="dummyframe">
+						<form action="http://10.10.0.1:5000/resetAll" id="deviceRemoveForm" target="dummyframe">
 							<input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
