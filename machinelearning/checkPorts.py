@@ -41,7 +41,7 @@ outboundList = [i for i in deviceActivity if i[0].startswith('10.10')]
 inboundList = [i for i in deviceActivity if not i[0].startswith('10.10')]
 inboundList = [ i for i in inboundList if "0.0.0.0" not in i ]
 
-#remove network address
+#remove router traffic
 outboundList = [i for i in outboundList if i[0] != '10.10.0.1']
 inboundList = [i for i in inboundList if i[2] != '10.10.0.1']
 

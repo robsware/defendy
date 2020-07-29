@@ -75,7 +75,7 @@ with open('namedDevices.txt') as f:
 		date = datetime.strptime(date, '%Y-%m-%d')
 		today = date.today()
 		delta = today - date
-		if delta.days > 7:
+		if delta.days > 30:
 			createBaseline(ip)
 
 

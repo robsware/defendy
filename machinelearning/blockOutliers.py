@@ -43,30 +43,3 @@ with open ("InboundIPTablesRles", 'r') as inboundRulesFile:
 		print (line)
 		#os.system(line)
 	   
-
-
-
-'''
-for file starting with outliers in name:
-	with open outliers
-
-		if srcIp is 10.10.something:
-			block outbound on srcIp and srcPort
-		elif srcIp is not 10.10.something:
-			block inbound on srcIp and srcPort
-		
-
-Create file with new outbound rules
-Match ip and add button to remove all rules related to that ip
-
-
-Add any new inbound rules to a file (like the deny scanners one)
-Button to reset inbount rules (delete that file)
-
-
-for ip in ips:
-	os.system("iptables -A INPUT -j DROP -s " + ip)
-	os.system("iptables -A INPUT -j DROP -s " + ip)
-	# iptables -A OUTPUT -p tcp -d 10.10.10.10 --destination-port 25 -j DROP
-	# iptables -A INPUT -p tcp --destination-port 8000 -s 1.2.3.4 -j DROP
-'''
