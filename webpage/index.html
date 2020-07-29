@@ -16,10 +16,11 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Overview</a></li>
-							<li><a href="#one">Rename Devices</a></li>
+							<li><a href="#one">Rename Device</a></li>
 							<li><a href="#two">Alerts</a></li>
 							<li><a href="#three">Remove Device</a></li>
-							<li><a href="#four">Reser Firewall Rules</a></li>
+							<li><a href="#four">Reset FW Rules - Devices</a></li>
+							<li><a href="#five">Reset Inbound FW Rules</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -36,7 +37,6 @@
 
 							<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 							<script src="js/getDevices.js"></script>
-							<script src="js/requestRenameDevice.js"></script>
 							<script src="js/publicip.js"></script>
 							<script src="js/alerts.js"></script>
 							<script src="js/getRenameDevices.js"></script>
@@ -99,22 +99,29 @@
 				<!-- Four -->
 				<section id="four" class="wrapper style2 fullscreen fade-up">
 					<div class="inner">
-						<script>pullRemoveDevices('/textdata/renameDevices.txt')</script> 
+						<script>pullResetDevices('/textdata/renameDevices.txt')</script> 
 						<h1>Reset Firewall Rules</h1>
-						<label for="pullRemoveDevices">Select a Device to reset firewall rules:</label><select id="pullRemoveDevices" name="removeName" form="deviceRemoveForm">
+						<label for="pullResetDevices">Select a Device to reset firewall rules:</label><select id="pullResetDevices" name="removeName" form="deviceRemoveForm">
 							<option value="renameDevices" autocomplete="off">Devices</option>
 						</select>
 
-						<form action="http://10.10.0.1:5000/reset" id="deviceRemoveForm" target="dummyframe">
+						<form action="http://127.0.0.1:5000/reset" id="deviceRemoveForm" target="dummyframe">
 						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+					</div>
+				</section>
 
 
-						<h2>Reset inbound rules to default</h2>
+				<!-- Five -->
+				<section id="five" class="wrapper style2 fullscreen fade-up">
+					<div class="inner">
+						<script>pullRemoveDevices('/textdata/renameDevices.txt')</script> 
+						<h1>Reset Inbound Firewall Rules</h1>
+						<p>Click the button to reset firewall rules for incomming connections to default</p>
 
-						<form action="http://10.10.0.1:5000/resetAll" id="deviceRemoveForm" target="dummyframe">
-							<input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
+						<form action="http://127.0.0.1:5000/resetInbound" id="deviceRemoveForm" target="dummyframe">
+						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 					</div>

@@ -70,7 +70,7 @@ def renameAPI():
 	return("Device renamed successfully")
 
 @app.route('/remove', methods=['GET'])
-def my_route1():
+def removeAPI():
 	removeDeviceName = request.args.get('removeName', default = 1, type = str)
 
 
@@ -116,6 +116,25 @@ def my_route1():
 
 	return("Devices removed successfully")
 
+
+def resetAPI():
+	removeDeviceName = request.args.get('removeName', default = 1, type = str)
+
+
+	removeDeviceName = removeDeviceName.split(" ", 1)[1]
+
+	return("Firewall rules reset")
+
+
+
+def resetInboundAPI():
+	removeDeviceName = request.args.get('removeName', default = 1, type = str)
+
+
+	removeDeviceName = removeDeviceName.split(" ", 1)[1]
+
+	return("Inbound firewall rules reset")
+
 '''
 @app.route('/scan', methods=['GET'])
 def my_route2():
@@ -125,4 +144,6 @@ def my_route2():
 	return("Scanning..")
 '''
 
-app.run(host="10.10.0.1")
+#TODO: change back to 10.10.0.1
+#app.run(host="10.10.0.1")
+app.run(host="127.0.0.1")
