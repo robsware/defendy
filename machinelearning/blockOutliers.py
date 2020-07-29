@@ -46,9 +46,6 @@ with open ("InboundIPTablesRles", 'r') as inboundRulesFile:
 
 
 
-
-#TODO: when you remove a device, also delete iptables rules
-
 '''
 for file starting with outliers in name:
 	with open outliers

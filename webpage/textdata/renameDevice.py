@@ -122,9 +122,9 @@ def resetAPI():
 
 
 	resetDeviceIP = resetDeviceName.split(" ", 1)[0]
-	print (resetDeviceName.split(" ", 1)[1])
-	print (resetDeviceIP)
-	os.remove("../../machinelearning/10.10.0.100_test")
+	#print (resetDeviceName.split(" ", 1)[1])
+	#print (resetDeviceIP)
+	os.remove("../../machinelearning/IPTablesRules_" + resetDeviceIP)
 
 	return("Firewall rules reset")
 
