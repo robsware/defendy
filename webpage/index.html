@@ -101,12 +101,12 @@
 					<div class="inner">
 						<script>pullResetDevices('/textdata/renameDevices.txt')</script> 
 						<h1>Reset Firewall Rules</h1>
-						<label for="pullResetDevices">Select a Device to reset firewall rules:</label><select id="pullResetDevices" name="removeName" form="deviceRemoveForm">
+						<label for="pullResetDevices">Select a Device to reset firewall its rules:</label><select id="pullResetDevices" name="resetName" form="deviceResetForm">
 							<option value="renameDevices" autocomplete="off">Devices</option>
 						</select>
 
-						<form action="http://127.0.0.1:5000/reset" id="deviceRemoveForm" target="dummyframe">
-						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
+						<form action="http://127.0.0.1:5000/reset" id="deviceResetForm" target="dummyframe">
+						  <input type="submit"  onClick="alert('Firewall rules reset successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 					</div>

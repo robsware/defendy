@@ -116,22 +116,23 @@ def removeAPI():
 
 	return("Devices removed successfully")
 
-
+@app.route('/reset', methods=['GET'])
 def resetAPI():
-	removeDeviceName = request.args.get('removeName', default = 1, type = str)
+	resetDeviceName = request.args.get('resetName', default = 1, type = str)
 
 
-	removeDeviceName = removeDeviceName.split(" ", 1)[1]
+	resetDeviceIP = resetDeviceName.split(" ", 1)[0]
+	print (resetDeviceName.split(" ", 1)[1])
+	print (resetDeviceIP)
+	os.remove("../../machinelearning/10.10.0.100_test")
 
 	return("Firewall rules reset")
 
 
-
+@app.route('/resetInbound', methods=['GET'])
 def resetInboundAPI():
-	removeDeviceName = request.args.get('removeName', default = 1, type = str)
+	os.remove("../../machinelearning/InboundIPTablesRles")
 
-
-	removeDeviceName = removeDeviceName.split(" ", 1)[1]
 
 	return("Inbound firewall rules reset")
 
