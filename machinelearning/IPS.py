@@ -228,45 +228,55 @@ def generateFWRules():
 def applyFWrules():
 
 	#load rules in iptables
-	for rulesFile in os.listdir('.'):
-		if re.match('outboundIPTablesRules', rulesFile):
-			with open (rulesFile, 'r') as rulesFileContent:
-				lines = rulesFileContent.readlines()
-				for line in lines:
-					#print (line)
-					os.system(line)
+	try:
+		for rulesFile in os.listdir('.'):
+			if re.match('outboundIPTablesRules', rulesFile):
+				with open (rulesFile, 'r') as rulesFileContent:
+					lines = rulesFileContent.readlines()
+					for line in lines:
+						#print (line)
+						os.system(line)
+	except:
+		pass
 			
 
-			
-	with open ("InboundIPTablesRles", 'r') as inboundRulesFile:
-		inboundRulesLines = inboundRulesFile.readlines()
-		for line in inboundRulesLines:
-			print (line)
-			os.system(line)
-			
+	try:			
+		with open ("InboundIPTablesRles", 'r') as inboundRulesFile:
+			inboundRulesLines = inboundRulesFile.readlines()
+			for line in inboundRulesLines:
+				print (line)
+				os.system(line)
+	except:
+		pass
 	return()
 
 
 
 
 
-with open('namedDevices.txt') as f:
-	for line in f.readlines():
-		ip = line.split("\t")[0]
-		loadModel(ip)
 
 
-#list of IPs
-with open('../../webpage/textdata/namedDevices.txt') as f:
-	for line in f.readlines():
-		ip = line.split("\t")[0]
-		date = line.split("\t")[3]
-		date = date.strip()
-		date = datetime.strptime(date, '%Y-%m-%d')
-		today = date.today()
-		delta = today - date
-		if delta.days > 30:
-			createBaseline(ip)
+while True:
+	with open('../../webpage/textdata/namedDevices.txt') as f:
+		for line in f.readlines():
+			ip = line.split("\t")[0]
+			try:
+				loadModel(ip)
+			except:
+				pass
+	applyFWrules()
 
+	#list of IPs
+	with open('../../webpage/textdata/namedDevices.txt') as f:
+		for line in f.readlines():
+			ip = line.split("\t")[0]
+			date = line.split("\t")[3]
+			date = date.strip()
+			date = datetime.strptime(date, '%Y-%m-%d')
+			today = date.today()
+			delta = today - date
+			if delta.days > 30:
+				createBaseline(ip)
 
-#load model and addFWRules should run every day
+	time.sleep(3600)
+
