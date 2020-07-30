@@ -212,7 +212,6 @@ def generateFWRules():
 
 
 		if re.match('inboundOutliers', outliersFile):
-			#Rows that do not match an internal IP and come from the outside
 
 			outliersFileContent = pd.read_csv(outliersFile, names=["srcIP", "srcPort", "dstIP", "dstPort"])
 			print (outliersFileContent)			

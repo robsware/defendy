@@ -8,10 +8,12 @@ sudo service hostapd restart
 
 sudo bash firewall.sh
 
-nohup python3 -m http.server --directory webpage/ 80&
+python3 -m http.server --directory webpage/ 80&
 
 sudo python3 webpage/textdata/statusCheck.py &
 
 python3 webpage/textdata/renameDevice.py &
+
+python3 machinelearning/IPS.py &
 
 sudo suricata -c /etc/suricata/suricata.yaml -i $newInterface -D
