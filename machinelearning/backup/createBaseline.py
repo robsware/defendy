@@ -9,6 +9,7 @@ import os
 from datetime import datetime
 import time
 
+#TODO: add a check against empty files
 
 def createBaseline(ip):
 	#check if baseline already exists
@@ -38,10 +39,9 @@ def createBaseline(ip):
 
 
 
-	if os.stat('inbound_' + ip + '.csv').st_size == 0:
-		return()
 
-	trafficData = pd.read_csv('inbound_' + ip + '.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
+
+	trafficData = pd.read_csv('inbound' + ip + '.csv', names=["srcIP", "srcPort", "dstIP", "dstPort"]) 
 	#encode source IP
 	values = np.array(trafficData['srcIP'])
 	integer_encoded = LabelEncoder().fit_transform(values)
@@ -67,7 +67,7 @@ def createBaseline(ip):
 
 
 #list of IPs
-with open('../../webpage/textdata/namedDevices.txt') as f:
+with open('namedDevices.txt') as f:
 	for line in f.readlines():
 		ip = line.split("\t")[0]
 		date = line.split("\t")[3]
