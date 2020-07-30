@@ -14,7 +14,7 @@ with open('namedDevices.txt') as f:
 ipPattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
 deviceActivity = []
 ports = []
-data = [json.loads(line) for line in open('eve.json', 'r')]
+data = [json.loads(line) for line in open('/var/log/suricata/eve.json', 'r')]
 i = 0
 for ip in ipList:
 	for line in data:

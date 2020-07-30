@@ -7,6 +7,7 @@ import requests
 import subprocess
 import sys
 import time
+import re
 
 app = flask.Flask(__name__)
 
@@ -73,7 +74,7 @@ def renameAPI():
 def removeAPI():
 	removeDeviceName = request.args.get('removeName', default = 1, type = str)
 
-
+	IPToPurge = removeDeviceName.split(" ", 1)[0]
 	removeDeviceName = removeDeviceName.split(" ", 1)[1]
 	with open('namedDevices.txt') as f:
 		namedDevices = f.readlines()
@@ -114,6 +115,25 @@ def removeAPI():
 		f.writelines(lines)
 
 
+	os.remove("../../machinelearning/IPTablesRules_" + IPToPurge)
+	subprocess.call("../../firewall.sh", shell=True)
+
+
+	for rulesFile in os.listdir('../../machinelearning'):
+		if re.match('IPTablesRules_', rulesFile):
+			with open (rulesFile, 'r') as rulesFileContent:
+				lines = rulesFileContent.readlines()
+				for line in lines:
+					os.system(line)
+
+	with open('/var/log/suricata/eve.json') as oldfile, open('../../machinelearning/eve_new.json', 'w') as newfile:
+		for line in oldfile:
+			if IPToPurge not in line:
+				newfile.write(line)
+
+	os.remove('/var/log/suricata/eve.json')
+	os.rename('/var/log/suricata/eve_new.json', '/var/log/suricata/eve.json')
+	
 	return("Devices removed successfully")
 
 @app.route('/reset', methods=['GET'])
@@ -126,12 +146,43 @@ def resetAPI():
 	#print (resetDeviceIP)
 	os.remove("../../machinelearning/IPTablesRules_" + resetDeviceIP)
 
+	subprocess.call("../../firewall.sh", shell=True)
+
+
+	for rulesFile in os.listdir('../../machinelearning'):
+		if re.match('IPTablesRules_', rulesFile):
+			with open (rulesFile, 'r') as rulesFileContent:
+				lines = rulesFileContent.readlines()
+				for line in lines:
+					os.system(line)
+
+	with open('/var/log/suricata/eve.json') as oldfile, open('../../machinelearning/eve_new.json', 'w') as newfile:
+		for line in oldfile:
+			if resetDeviceIP not in line:
+				newfile.write(line)
+
+	os.remove('/var/log/suricata/eve.json')
+	os.rename('/var/log/suricata/eve_new.json', '/var/log/suricata/eve.json')
+
 	return("Firewall rules reset")
 
 
 @app.route('/resetInbound', methods=['GET'])
 def resetInboundAPI():
 	os.remove("../../machinelearning/InboundIPTablesRles")
+
+
+	subprocess.call("../../firewall.sh", shell=True)
+
+
+	for rulesFile in os.listdir('../../machinelearning'):
+		if re.match('IPTablesRules_', rulesFile):
+			with open (rulesFile, 'r') as rulesFileContent:
+				lines = rulesFileContent.readlines()
+				for line in lines:
+					os.system(line)
+
+
 
 
 	return("Inbound firewall rules reset")
