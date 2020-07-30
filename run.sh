@@ -16,7 +16,9 @@ python3 webpage/textdata/renameDevice.py &
 
 if [[ $1=="-IPS" ]];
 then
-	python3 machinelearning/IPS.py &
+	sudo python3 machinelearning/IPS.py &
+	mv webpage/index.html webpage/index_default.html
+	mv webpage/index_IPS.html webpage/index.html
 fi
 
 sudo suricata -c /etc/suricata/suricata.yaml -i $newInterface -D
