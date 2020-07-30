@@ -14,6 +14,9 @@ sudo python3 webpage/textdata/statusCheck.py &
 
 python3 webpage/textdata/renameDevice.py &
 
-python3 machinelearning/IPS.py &
+if [[ $1=="-IPS" ]];
+then
+	python3 machinelearning/IPS.py &
+fi
 
 sudo suricata -c /etc/suricata/suricata.yaml -i $newInterface -D
