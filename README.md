@@ -1,5 +1,5 @@
 # defendy
-An easy to deploy access point for your untrusted IoT devices. The software comes with a number of ready to deploy defences, such as blocking any traffic between the devices on the network except SSH, blocking most currently known internet scanners (SHODAN, Censys), an IDS through suricata, as well as a web interface where you can track, rename and remove your devices which can be accessed by connection to the access point and accessing 10.10.0.1. Designed to run on most development boards, with less than 500 MBs of RAM. Tested on a raspberryPi 3a and 3b+ with an USB antenna.
+An easy to deploy access point for your untrusted IoT devices. The software comes with a number of ready to deploy defences, such as blocking any traffic between the devices on the network except SSH, blocking most currently known internet scanners (SHODAN, Censys), an IDS through suricata, as well as a web interface where you can track, rename and remove your devices which can be accessed by connecting to the access point and accessing 10.10.0.1. Designed to run on most development boards, with less than 500 MBs of RAM. Tested on a raspberryPi 3a and 3b+ with an USB antenna.
 
 ![Dashboard Main Page](https://github.com/robsware/defendy/blob/master/webpage/images/dashboard.png?raw=true)
 
@@ -35,6 +35,6 @@ To run Defendy with a machine learning based IPS, execute run.sh with the -IPS f
 This project is licensed under the GPL License.
 
 
-### Current status
+**Current status**
 I don't have a lot (or any) time to currently add any more features, nor the hardware to test it on multiple devices. 
 Refactoring is in the works but will take some time.
