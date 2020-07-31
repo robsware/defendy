@@ -19,6 +19,8 @@
 							<li><a href="#one">Rename Device</a></li>
 							<li><a href="#two">Alerts</a></li>
 							<li><a href="#three">Remove Device</a></li>
+							<li><a href="#four">Reset FW Rules - Devices</a></li>
+							<li><a href="#five">Reset Inbound FW Rules</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -42,6 +44,10 @@
 							<script>loadDoc('/textdata/displayDevices.txt')</script>
 							<script>loadAlerts('/textdata/fast_prio.log')</script>
 							<script>pullListDevices('/textdata/renameDevices.txt')</script> 
+
+
+
+
 
 
 						</div>
@@ -87,6 +93,39 @@
 						</div>
 					</section>
 
+
+
+
+				<!-- Four -->
+				<section id="four" class="wrapper style2 fullscreen fade-up">
+					<div class="inner">
+						<script>pullResetDevices('/textdata/renameDevices.txt')</script> 
+						<h1>Reset Firewall Rules</h1>
+						<label for="pullResetDevices">Select a Device to reset firewall its rules:</label><select id="pullResetDevices" name="resetName" form="deviceResetForm">
+							<option value="renameDevices" autocomplete="off">Devices</option>
+						</select>
+
+						<form action="http://10.10.0.1:5000/reset" id="deviceResetForm" target="dummyframe">
+						  <input type="submit"  onClick="alert('Firewall rules reset successfully'); history.go(0);">
+						</form>
+						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+					</div>
+				</section>
+
+
+				<!-- Five -->
+				<section id="five" class="wrapper style3-alt fullscreen fade-up">
+					<div class="inner">
+						<script>pullRemoveDevices('/textdata/renameDevices.txt')</script> 
+						<h1>Reset Inbound Firewall Rules</h1>
+						<p>Click the button to reset firewall rules for incomming connections to default</p>
+
+						<form action="http://10.10.0.1:5000/resetInbound" id="deviceRemoveForm" target="dummyframe">
+						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
+						</form>
+						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+					</div>
+				</section>
 
 
 			</div>

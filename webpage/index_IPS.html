@@ -105,7 +105,7 @@
 							<option value="renameDevices" autocomplete="off">Devices</option>
 						</select>
 
-						<form action="http://127.0.0.1:5000/reset" id="deviceResetForm" target="dummyframe">
+						<form action="http://10.10.0.1:5000/reset" id="deviceResetForm" target="dummyframe">
 						  <input type="submit"  onClick="alert('Firewall rules reset successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
@@ -120,7 +120,7 @@
 						<h1>Reset Inbound Firewall Rules</h1>
 						<p>Click the button to reset firewall rules for incomming connections to default</p>
 
-						<form action="http://127.0.0.1:5000/resetInbound" id="deviceRemoveForm" target="dummyframe">
+						<form action="http://10.10.0.1:5000/resetInbound" id="deviceRemoveForm" target="dummyframe">
 						  <input type="submit"  onClick="alert('Device removed successfully'); history.go(0);">
 						</form>
 						<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>

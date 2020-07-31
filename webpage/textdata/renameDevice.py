@@ -196,6 +196,4 @@ def my_route2():
 	return("Scanning..")
 '''
 
-#TODO: change back to 10.10.0.1
-#app.run(host="10.10.0.1")
-app.run(host="127.0.0.1")
+app.run(host="10.10.0.1")
