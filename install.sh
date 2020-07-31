@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#sudo apt-get install hostapd
-#sudo apt-get install suricata
-#sudo cp hostapd.conf /etc/hostapd/hostapd.conf
-#sudo cp interfaces /etc/network/interfaces
-
-
 echo "Default broadcast interface is set on wlan1. Change? yes/no"
 read changeInterface
 if [[ $changeInterface == "yes" ]] || [[ $changeInterface == "y" ]];
@@ -29,5 +23,14 @@ sed -i "s/securepass/$newPassword/g" hostapd.conf
 
 sudo pip3 install -r requirements.txt
 
+
+if [[ $1 == "-IPS" ]];
+then
+	sudo apt-get install hostapd
+	sudo apt-get install suricata
+	sudo cp hostapd.conf /etc/hostapd/hostapd.conf
+	sudo cp interfaces /etc/network/interfaces
+	sudo apt-get install gfortran libopenblas-dev liblapack-dev
+fi
 
 echo "Done"
