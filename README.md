@@ -5,8 +5,11 @@ An easy to deploy access point for your untrusted IoT devices. The software come
 
 ## Requirements
 suricata
+
 hostapd
+
 python3 and the libraries in requirements.txt
+
 
 The default broadcast interface is wlan1, can be changed by running ```install.sh``` from the main directory
 
