@@ -14,7 +14,7 @@ sudo python3 webpage/textdata/statusCheck.py &
 
 python3 webpage/textdata/renameDevice.py &
 
-if [[ $1=="-IPS" ]];
+if [[ $1 == "-IPS" ]];
 then
 	sudo python3 machinelearning/IPS.py &
 	mv webpage/index.html webpage/index_default.html

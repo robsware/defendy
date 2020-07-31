@@ -23,7 +23,7 @@ os.chdir(dname)
 def createInboundandOutboundFiles():
 #get the IP from all connected devices
 	ipList = []
-	with open('../../webpage/textdata/namedDevices.txt') as f:
+	with open('../webpage/textdata/namedDevices.txt') as f:
 		for line in f.readlines():
 			ipList.append(line.split("\t")[0])
 
@@ -256,7 +256,7 @@ def applyFWrules():
 
 
 while True:
-	with open('../../webpage/textdata/namedDevices.txt') as f:
+	with open('../webpage/textdata/namedDevices.txt') as f:
 		for line in f.readlines():
 			ip = line.split("\t")[0]
 			try:
@@ -266,7 +266,7 @@ while True:
 	applyFWrules()
 
 	#list of IPs
-	with open('../../webpage/textdata/namedDevices.txt') as f:
+	with open('../webpage/textdata/namedDevices.txt') as f:
 		for line in f.readlines():
 			ip = line.split("\t")[0]
 			date = line.split("\t")[3]
