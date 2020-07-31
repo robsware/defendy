@@ -6,7 +6,7 @@ suricata
 hostapd
 python3 and the libraries in requirements.txt
 
-The default broadcast interface is wlan1, can be changed by running install.sh from the main directory
+The default broadcast interface is wlan1, can be changed by running ```install.sh``` from the main directory
 
 ## Running
 
@@ -23,7 +23,16 @@ from the main directory as sudo. You may now connect your devices to the access 
 
 There is a machine learning IPS module that is deactivated by default, as it is too demanding for a raspberry Pi.
 
-install.sh should install the necessary prerequisites
-Run with -IPS for install the IPS version
+```install.sh``` should install the necessary prerequisites
+Run with the ```-IPS``` flag to install the IPS version
 
 To run Defendy with a machine learning based IPS, execute run.sh with the -IPS flag
+
+## License
+
+This project is licensed under the GPL License.
+
+
+### Current status
+I don't have a lot (or any) time to currently add any more features, nor the hardware to test it on multiple devices. 
+Refactoring is in the works but will take some time.
