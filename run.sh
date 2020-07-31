@@ -1,3 +1,4 @@
+#!/bin/bash
 newInterface=$(cat hostapd.conf | grep wlan | cut -f2 -d"=")
 echo $newInterface
 
