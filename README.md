@@ -36,5 +36,6 @@ This project is licensed under the GPL License.
 
 
 **Current status**
+
 I don't have a lot (or any) time to currently add any more features, nor the hardware to test it on multiple devices. 
 Refactoring is in the works but will take some time.
